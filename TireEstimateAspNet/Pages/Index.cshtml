@@ -1,0 +1,35 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "タイヤ見積もり";
+}
+
+<h1>タイヤ見積アプリ.NET版</h1>
+<p>C#勉強！</p>
+
+<hr />
+
+<!-- 見積もりの入力フォーム -->
+<form method="post">
+    <div style="margin-bottom: 10px;">
+        <label>タイヤの価格: </label><br />
+        <input type="number" asp-for="UnitPrice" />
+    </div>
+
+    <div style="margin-bottom: 10px;">
+        <label>本数:</label><br />
+        <input type="number" asp-for="Quantity" />
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="margin-top: 10px;">見積を計算する</button>
+</form>
+
+<!-- 計算ボタンが押された時だけ結果表示 -->
+@if (Model.IsCalculated)
+{
+    <hr />
+    <h2>見積結果</h2>
+    <p>単価: @Model.UnitPrice.ToString("#,##0") 円</p>
+    <p>本数: @Model.Quantity 本</p>
+    <h3>合計金額: @Model.TotalAmount.ToString("#,##0") 円</h3>
+}
