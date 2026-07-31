@@ -1,4 +1,4 @@
-﻿namespace TireEstimateAspNet.Model
+﻿namespace TireEstimateAspNet.Models
 {
     public class Quote
     {
