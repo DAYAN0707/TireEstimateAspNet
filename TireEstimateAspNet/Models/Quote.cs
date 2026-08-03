@@ -9,6 +9,7 @@ public class Quote
 
     public string CustomerName { get; set; } = "";
     public string TireSize { get; set; } = "";
+    public decimal UnitPrice { get; set; }
     public int Quantity { get; set; }
     public decimal TotalAmount { get; set; }
     public DateTime CreatedAt { get; set; }
