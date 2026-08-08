@@ -1,4 +1,41 @@
 ﻿@page
 @model TireEstimateAspNet.Pages.DetailsModel
 @{
+    ViewData["Title"] = "見積詳細";
 }
+
+<h1>見積詳細</h1>
+
+<div class="card mt-4">
+
+    <div class="card-header bg-primary text-white">
+        見積 ID : @Model.Quote?.Id
+    </div>
+    <div class="card-body" >
+        <dl class="row">
+            <dt class="col-sm-3">顧客名</dt>
+            <dd class="col-sm-9">@Model.Quote?.CustomerName</dd>
+    
+             <dt class="col-sm-3">タイヤサイズ</dt>
+             <dd class="col-sm-9">@Model.Quote?.TireSize</dd>
+
+             <dt class="col-sm-3">単価</dt>
+             <dd class="col-sm-9">@Model.Quote?.UnitPrice.ToString("#,##0") 円</dd>
+
+             <dt class="col-sm-3">本数</dt>
+             <dd class="col-sm-9">@Model.Quote?.Quantity　本</dd>
+
+
+            <dt class="col-sm-3">合計金額</dt> 
+            <dd class="col-sm-9">@Model.Quote?.TotalAmount.ToString("#,##0") 円</dd>
+
+            <dt class="col-sm-3">作成日時</dt>
+            <dd class="col-sm-9">@Model.Quote?.CreatedAt.ToString("yyyy/MM/dd HH:mm:ss")</dd>
+
+        </dl>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-page="./Index" class="btn btn-secondary">一覧に戻る</a>
+</div>
