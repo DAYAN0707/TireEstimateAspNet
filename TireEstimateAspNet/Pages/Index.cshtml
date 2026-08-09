@@ -59,6 +59,7 @@
             <th>本数</th>
             <th>合計金額</th>
             <th>作成日時</th>
+            <th>操作</th>
         </tr>
     </thead>
     <tbody>
@@ -72,6 +73,9 @@
                 <td>@quote.Quantity 本</td>
                 <td>@quote.TotalAmount.ToString("#,##0") 円</td>
                 <td>@quote.CreatedAt.ToString("yyyy/MM/dd HH:mm")</td>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@quote.Id" class="btn btn-sm btn-info text-white">詳細</a>
+                </td>
             </tr>
         }
     </tbody>  
