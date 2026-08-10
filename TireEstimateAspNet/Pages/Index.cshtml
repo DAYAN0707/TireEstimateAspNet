@@ -75,6 +75,12 @@
                 <td>@quote.CreatedAt.ToString("yyyy/MM/dd HH:mm")</td>
                 <td>
                     <a asp-page="./Details" asp-route-id="@quote.Id" class="btn btn-sm btn-info text-white">詳細</a>
+                    
+                    <form method="post" asp-page="./Index" asp-page-handler="Delete" asp-route-id="@quote.Id" 
+                    style="display:inline"
+                    onsubmit="return confirm('この見積を本当に削除しますか？');">
+                        <button type="submit" class="btn btn-sm btn-danger">削除</button>
+                    </form>
                 </td>
             </tr>
         }

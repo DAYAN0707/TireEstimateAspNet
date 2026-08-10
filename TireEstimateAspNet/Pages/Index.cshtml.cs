@@ -76,5 +76,35 @@ public class IndexModel : PageModel
             // ページを再表示する
             return Page();
         }
+
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        {
+            var quote = await _context.Quotes.FindAsync(id);
+            if (quote != null)
+            {
+                _context.Quotes.Remove(quote);
+                await _context.SaveChangesAsync();
+            }
+            // データベースから最新の見積もり一覧を取得する
+            QuoteList = await _context.Quotes
+                .OrderByDescending(q => q.CreatedAt)
+                .ToListAsync();
+            return Page();
+        }
+        
+        public async Task<IActionResult> OnPostClearAsync(int id)
+        {
+            var quote = await _context.Quotes.FindAsync(id);
+
+            if (quote == null)
+            {
+                return NotFound();
+            }
+            _context.Quotes.Remove(quote);
+            await _context.SaveChangesAsync();
+
+            // 削除後に再読み込みで画面の二重送信を防ぎ、OnGetAsyncが最新の見積もり一覧を取得する
+            return RedirectToPage();
+        }
     }
 }
