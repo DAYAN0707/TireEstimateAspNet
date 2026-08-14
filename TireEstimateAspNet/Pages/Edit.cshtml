@@ -1,6 +1,43 @@
-﻿namespace TireEstimateAspNet.Pages
-{
-    public class Edit
-    {
-    }
+﻿@page
+@model TireEstimateAspNet.Pages.EditModel
+@{
+    ViewData["Title"] = "見積編集";
 }
+
+<h1>見積編集</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <!-- 💡 IDと作成日時は隠し味（hidden）として保持しておく -->
+            <input type="hidden" asp-for="Quote.Id" />
+            <input type="hidden" asp-for="Quote.CreatedAt" />
+
+            <div class="mb-3">
+                <label class="form-label">お客様名</label>
+                <input asp-for="Quote.CustomerName" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">タイヤサイズ</label>
+                <input asp-for="Quote.TireSize" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">単価</label>
+                <input asp-for="Quote.UnitPrice" class="form-control" type="number" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">本数</label>
+                <input asp-for="Quote.Quantity" class="form-control" type="number" />
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary">更新保存</button>
+                <a asp-page="./Index" class="btn btn-secondary">キャンセル</a>
+            </div>
+        </form>
+    </div>
+</div>

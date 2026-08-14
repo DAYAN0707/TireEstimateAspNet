@@ -75,6 +75,8 @@
                 <td>@quote.CreatedAt.ToString("yyyy/MM/dd HH:mm")</td>
                 <td>
                     <a asp-page="./Details" asp-route-id="@quote.Id" class="btn btn-sm btn-info text-white">詳細</a>
+
+                    <a asp-page="./Edit" asp-route-id="@quote.Id" class="btn btn-sm btn-warning text-white">編集</a>
                     
                     <form method="post" asp-page="./Index" asp-page-handler="Delete" asp-route-id="@quote.Id" 
                     style="display:inline"
