@@ -1,0 +1,33 @@
+﻿@page
+@model TireEstimateAspNet.Pages.InventoryModel
+@{
+    ViewData["Title"] = "タイヤ在庫一覧";
+}
+
+<h1>タイヤ在庫一覧</h1>
+
+<hr />
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>在庫ID</th>
+            <th>タイヤサイズ</th>
+            <th>種類</th>
+            <th>在庫本数</th>
+            <th>単価</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tire in Model.InventoryList)
+        {
+            <tr>
+                <td>@tire.Id</td>
+                <td>@tire.TireSize</td>
+                <td>@tire.Season</td>
+                <td>@tire.StockQuantity 本</td>
+                <td>@tire.UnitPrice.ToString("#,##0") 円</td>
+            </tr>
+        }
+    </tbody>
+</table>
