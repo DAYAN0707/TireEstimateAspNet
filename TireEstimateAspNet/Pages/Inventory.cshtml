@@ -8,6 +8,38 @@
 
 <hr />
 
+<!-- 💡 タイヤ在庫登録フォーム -->
+<h2>タイヤ在庫登録</h2>
+
+<form method="post" class="mb-5">
+    <div class="mb-3">
+        <label class="form-label">タイヤサイズ</label>
+        <input asp-for="NewInventory.TireSize" class="form-control" placeholder="例: 195/65R15" required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">種類</label>
+        <input asp-for="NewInventory.Season" class="form-control" placeholder="例: 夏" required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">在庫本数</label>
+        <input asp-for="NewInventory.StockQuantity" class="form-control" type="number" min="0" required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">単価</label>
+        <input asp-for="NewInventory.UnitPrice" class="form-control" type="number" min="0" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">在庫を登録</button>
+</form>
+
+<hr />
+
+<!-- 在庫一覧テーブル -->
+<h2>在庫一覧</h2>
+
 <table class="table table-bordered table-striped">
     <thead class="table-dark">
         <tr>
