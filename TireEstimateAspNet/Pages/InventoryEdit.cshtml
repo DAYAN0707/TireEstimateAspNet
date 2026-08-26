@@ -1,0 +1,47 @@
+﻿@page
+@model TireEstimateAspNet.Pages.InventoryEditModel
+@{
+    ViewData["Title"] = "タイヤ在庫編集";
+}
+
+<h1>タイヤ在庫編集</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+
+        <form method="post">
+
+            <!-- IDを hidden で保持 -->
+            <input type="hidden" asp-for="TireInventory.Id" />
+
+            <div class="mb-3">
+                <label class="form-label">タイヤサイズ</label>
+                <input asp-for="TireInventory.TireSize" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">種類</label>
+                <input asp-for="TireInventory.Season" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">在庫本数</label>
+                <input asp-for="TireInventory.StockQuantity" class="form-control" type="number" min="0" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">単価 (円)</label>
+                <input asp-for="TireInventory.UnitPrice" class="form-control" type="number" min="0" required />
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary">更新保存</button>
+                <a asp-page="./Inventory" class="btn btn-secondary">キャンセル</a>
+            </div>
+
+        </form>
+
+    </div>
+</div>
