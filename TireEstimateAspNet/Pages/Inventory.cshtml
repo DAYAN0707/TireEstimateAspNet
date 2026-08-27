@@ -59,6 +59,10 @@
                 <td>@tire.Season</td>
                 <td>@tire.StockQuantity 本</td>
                 <td>@tire.UnitPrice.ToString("#,##0") 円</td>
+                <!-- 編集ボタン追加（asp-route-id で在庫IDをパラメータ渡し）-->
+                <!-- ここで InventoryEdit ページへのリンクを作成 -->
+                <!--asp-route-idはリンク先のページに ID を引き渡すための ASP.NET Core の仕組み（Tag Helper）-->
+                <a asp-page="./InventoryEdit" asp-route-id="@tire.Id" class="btn btn-sm btn-warning">編集</a>
             </tr>
         }
     </tbody>
