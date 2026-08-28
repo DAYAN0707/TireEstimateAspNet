@@ -15,8 +15,19 @@ namespace TireEstimateAspNet.Pages
             _context = context;
         }
 
+        [BindProperty]
+        // 在庫情報を格納するプロパティ
+        public TireInventory TireInventory { get; set; } = default!;
+
+        [BindProperty(SupportsGet = true)]
+        // 検索用のタイヤサイズを格納するプロパティ(URLクエリ文字列からGETで取得するため SupportsGet = true)
+        public string SearchTireSize { get; set; } = string.Empty;
+
+
+
         // 在庫一覧を画面に渡すためのリスト
         public List<TireInventory> InventoryList { get; set; } = new();
+
 
 
         [BindProperty]
@@ -24,14 +35,28 @@ namespace TireEstimateAspNet.Pages
 
 
         // ページ読み込み時に DB からタイヤサイズ順で取得
+        // GETリクエストを非同期で処理
         public async Task OnGetAsync()
         {
-            InventoryList = await _context.TireInventories
+            // 1. クエリの土台（SELECT * FROM TireInventories の準備）
+            var query = _context.TireInventories.AsQueryable();
+
+            // 2. 検索条件が入力されている場合のみ WHERE 句を追加
+            if (!string.IsNullOrEmpty(SearchTireSize))
+            {
+                // 検索用のタイヤサイズが指定されている場合は、部分一致でフィルタリング
+                query = query.Where(q => q.TireSize.Contains(SearchTireSize));
+            }
+
+            // 3. 並び替えを行って、最後にデータベースからデータを取得（SQL発行）
+            InventoryList = await query
                 .OrderBy(q => q.TireSize)
                 .ToListAsync();
         }
 
-        public async Task<IActionResult> OnPostAsync() {
+        public async Task<IActionResult> OnPostAsync()
+        {
+            // タイヤサイズが入力されている場合だけ絞り込み
             if (!ModelState.IsValid)
             {
                 // 入力値が不正な場合は、在庫一覧を再取得して画面に戻す
