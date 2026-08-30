@@ -35,7 +35,20 @@
     <button type="submit" class="btn btn-primary">在庫を登録</button>
 </form>
 
-<hr />
+<hr class="my-4"/>
+
+<!-- 在庫検索フォーム -->
+<h2>在庫検索</h2>
+
+<form method="get" class="mb-4">
+    <div class="input-group">
+        <input asp-for="SearchTireSize" class="form-control" placeholder="例: 195/65R15" />
+  \     
+        <button type="submit" class="btn btn-secondary">検索</button>
+
+        <a asp-page="./Inventory" class="btn btn-secondary">クリア</a>
+    </div>
+</form>
 
 <!-- 在庫一覧テーブル -->
 <h2>在庫一覧</h2>
