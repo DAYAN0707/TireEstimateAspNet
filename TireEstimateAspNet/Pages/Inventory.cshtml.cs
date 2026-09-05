@@ -31,7 +31,7 @@ namespace TireEstimateAspNet.Pages
 
 
         [BindProperty]
-        public TireInventory NewInventory { get; set; } = new ();
+        public TireInventory NewInventory { get; set; } = new();
 
 
         // ページ読み込み時に DB からタイヤサイズ順で取得
@@ -74,6 +74,20 @@ namespace TireEstimateAspNet.Pages
             await _context.SaveChangesAsync();
 
             // 保存後は在庫一覧ページにリダイレクト
+            return RedirectToPage("./Inventory");
+        }
+
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        {
+            // 指定されたIDの在庫情報を取得
+            var tire = await _context.TireInventories.FindAsync(id);
+            if (tire != null)
+            {
+                // 在庫情報が存在する場合は削除
+                _context.TireInventories.Remove(tire);
+                await _context.SaveChangesAsync();
+            }
+            // 削除後は在庫一覧ページにリダイレクト
             return RedirectToPage("./Inventory");
         }
     }
